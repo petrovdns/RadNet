@@ -1,4 +1,4 @@
-package com.petrovdns.radnet.entity.payload.response;
+package com.petrovdns.radnet.payload.response;
 
 import lombok.Getter;
 

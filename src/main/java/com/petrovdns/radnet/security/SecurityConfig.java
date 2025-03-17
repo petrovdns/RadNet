@@ -1,8 +1,11 @@
 package com.petrovdns.radnet.security;
 
 import com.petrovdns.radnet.service.CustomUserDetailsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationEventPublisher;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -10,6 +13,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -22,12 +27,29 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
         proxyTargetClass = true
 )
 public class SecurityConfig {
+    public static final Logger LOG = LoggerFactory.getLogger(SecurityConfig.class);
+
     private final JWTAuthenticationEntryPoint jwtep;
     private final CustomUserDetailsService cuds;
 
     public SecurityConfig(JWTAuthenticationEntryPoint jwtep, CustomUserDetailsService cuds) {
         this.jwtep = jwtep;
         this.cuds = cuds;
+    }
+
+    @Bean
+    public AuthenticationEventPublisher customAuthenticationEventPublisher() {
+        return new AuthenticationEventPublisher() {
+            @Override
+            public void publishAuthenticationSuccess(Authentication authentication) {
+                String username = authentication.getName();
+                LOG.info("User {} has successfully logged in.", username);
+            }
+
+            @Override
+            public void publishAuthenticationFailure(AuthenticationException exception, Authentication authentication) {
+            }
+        };
     }
 
     @Bean

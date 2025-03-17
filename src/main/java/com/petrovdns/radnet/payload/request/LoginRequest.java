@@ -1,4 +1,4 @@
-package com.petrovdns.radnet.entity.payload.request;
+package com.petrovdns.radnet.payload.request;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;

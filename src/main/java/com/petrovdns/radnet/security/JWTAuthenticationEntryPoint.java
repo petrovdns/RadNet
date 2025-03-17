@@ -1,7 +1,7 @@
 package com.petrovdns.radnet.security;
 
 import com.google.gson.Gson;
-import com.petrovdns.radnet.entity.payload.response.InvalidLoginResponse;
+import com.petrovdns.radnet.payload.response.InvalidLoginResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

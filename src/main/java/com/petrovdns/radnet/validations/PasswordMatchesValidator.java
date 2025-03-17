@@ -1,7 +1,7 @@
 package com.petrovdns.radnet.validations;
 
 import com.petrovdns.radnet.anotations.PasswordMatches;
-import com.petrovdns.radnet.entity.payload.request.SignupRequest;
+import com.petrovdns.radnet.payload.request.SignupRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

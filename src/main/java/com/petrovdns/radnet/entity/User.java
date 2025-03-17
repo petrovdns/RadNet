@@ -13,11 +13,12 @@ import java.util.*;
 @Entity
 @Getter
 @Setter
+@Table(name = "user")
 public class User extends AbstractEntity implements UserDetails {
     @Column(nullable = false)
     private String name;
 
-    @Column(unique = true)
+    @Column(name = "user_name", unique = true)
     private String userName;
 
     @Column(nullable = false)
@@ -50,7 +51,7 @@ public class User extends AbstractEntity implements UserDetails {
     }
 
     private User(Long id, String userName, String email, String password, Collection<? extends GrantedAuthority> authorities) {
-        setId(id);
+        super.setId(id);
         this.userName = userName;
         this.email = email;
         this.password = password;
@@ -97,5 +98,10 @@ public class User extends AbstractEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return UserDetails.super.isEnabled();
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.authorities;
     }
 }

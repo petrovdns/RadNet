@@ -1,4 +1,4 @@
-package com.petrovdns.radnet.entity.payload.request;
+package com.petrovdns.radnet.payload.request;
 
 import com.petrovdns.radnet.anotations.PasswordMatches;
 import com.petrovdns.radnet.anotations.ValidEmail;

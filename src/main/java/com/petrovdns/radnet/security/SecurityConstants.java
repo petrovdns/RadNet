@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 public class SecurityConstants {
     public static final String SIGN_UP_URLS = "/api/auth/**";
-    private static final String SECRET_KEY = "SecretKeyGenJWT";
+    private static final String SECRET_KEY = "SecretKeyGenJWT256Bits1234567890"; //36 caractere
     public static final SecretKey SECRET = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
     public static final String TOKEN_PREFIX = "Bearer ";
     public static final String HEADER_STRING = "Authorization";
